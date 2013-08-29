@@ -271,7 +271,7 @@ class UploadDirManager(object):
                        If *path* is a URI don't add it; just return the URI.
 
         :return: the URI assigned to the path"""
-        if is_uri(path):
+        if (not os.path.exists(path)) and is_uri(path):
             return path
 
         if path not in self._path_to_name:
@@ -284,7 +284,7 @@ class UploadDirManager(object):
     def uri(self, path):
         """Get the URI for the given path. If *path* is a URI, just return it.
         """
-        if is_uri(path):
+        if (not os.path.exists(path)) and is_uri(path):
             return path
 
         if path in self._path_to_name:
